@@ -1,27 +1,3 @@
-function buildMetadata(sample) {
-
-    // @TODO: Complete the following function that builds the metadata panel
-  
-    // Use `d3.json` to fetch the metadata for a sample
-    const metadataURL = "/metadata/" + sample;
-    d3.json(metadataURL).then(function(data) {
-  
-      // Use d3 to select the panel with id of `#sample-metadata`
-      metadataPanel = d3.select("#sample-metadata");
-        
-      // Use `.html("") to clear any existing metadata
-      metadataPanel.html("");
-      
-      // Use `Object.entries` to add each key and value pair to the panel
-      // Hint: Inside the loop, you will need to use d3 to append new
-      // tags for each key-value in the metadata.
-      Object.entries(data).forEach(([key, value]) => {
-            var cell = metadataPanel.append("p");
-            cell.text(key + ": " + value);
-      });
-    });
-  }
-  
   function buildCharts(sample) {
   
     // @TODO: Use `d3.json` to fetch the sample data for the plots
@@ -41,16 +17,7 @@ function buildMetadata(sample) {
       result = result.slice(0, 10);
       console.log(result);
   
-      // Trace1 for the sample data
-      var trace1 = {
-        values: result.map(row => row.sample_values),
-        labels: result.map(row => row.otu_ids),
-        hovertext: result.map(row => row.otu_labels),
-        type: "pie",
-        orientation: "h"
-      };
-      var pieChart = [trace1];
-      Plotly.newPlot("pie", pieChart);
+
   
     
       // @TODO: Build a Bubble Chart using the sample data
